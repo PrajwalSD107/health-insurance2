@@ -12,7 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
-    @Autowired
+    @Autowired                  // it is variable and It holds object of your class
     private UserDetailsService customUserDetailsService;
 
     @Bean
@@ -20,10 +20,10 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
+    @Bean     // return type, return object of DaoAuthenticationProvider class 
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(customUserDetailsService);
-        authProvider.setPasswordEncoder(passwordEncoder());
+        authProvider.setPasswordEncoder(passwordEncoder()); // verify password encoder is set
         return authProvider;
     }
 
